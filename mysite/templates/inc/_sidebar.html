@@ -1,0 +1,11 @@
+{% load s_tags %}
+{% get_categories as categories %}
+<div class='col-md-2' style="display: flex; flex-direction: column;">
+    {% for item in categories %}
+    <a href={{item.get_absolute_url}} {#% url 'choosen_category' item.pk %#} style="float: left;">{{item}} 
+         <span class="badge bg-secondary">{{item.news_number}}</span></a>
+   
+    {% endfor %}
+
+</div>
+{#% show_categories arg1='hi' arg2='sea' %#}

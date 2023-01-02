@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+створення новини
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+{{form.non_field.errors}}
+<div>
+    <h1>тут ми будемо створювати новину</h1>
+    <div style="border: blue 2px double; padding: 10px;" class="form-group">
+        <form   method="post" class="form">
+            {% csrf_token %}
+
+            {{form.as_p}}
+            <!-- усі поля форми передаються всередині <p> -->
+            
+            {% comment %}
+            {% for item in form %} 
+            <p>{{item.label_tag}}  {{item}}</p>
+            {% endfor %}
+            {% endcomment %}
+            
+
+
+            <!-- <div>
+                <label for="{{form.title.id_for_label}}">назва</label>
+                {{form.title}}
+                /можна вручну прописувати всі поля форми(напр. title)
+            </div> -->
+            <button type="submit" class="btn-primary">Додати новину</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href={% url 'all_category' %}>Головна</a>
+                <a class="nav-link" href="{% url 'add_news' %}">Додати новину</a>
+                {% if request.user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'add_category' %}">Додати категорію</a>
+                {% endif %}
+            </div>
+            
+        </div>
+        {% if request.user.is_authenticated %}
+                <span>Ви зайшли як {{user.username}}</span>/ <a href="{% url 'log_out' %}">Вийти</a>
+                <br>
+                <a href="{% url 'sending_mail' %}">Зворотній зв'язок</a>
+            {% else %}
+            <a href="{% url 'register' %}" class="navbar-text"> Реєстрація </a> / <a href="{% url 'log_in' %}"class="navbar-text"> Увійти </a>
+            {% endif %}
+    </div>
+</nav>

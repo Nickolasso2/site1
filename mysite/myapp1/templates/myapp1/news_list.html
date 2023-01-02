@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+{{title}} 
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<p style="color: royalblue;font-size: xx-large;"> виведення категорії через клас</p>
+<div class="col-md-10">
+    {% for item in news_class %}
+   
+    <div class="card mb-3">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="font-weight: bolder; background-color: aquamarine;">
+                {{item.title}}</li>
+            <li class="list-group-item"> Категорія: <a href={{item.category.get_absolute_url}}>{{item.category}}</a></li>
+            <li class="list-group-item">{{item.content|safe|linebreaks|truncatewords:50}}</li>
+            <li>
+                <a href={{item.get_absolute_url}} class="btn btn-primary">Більше...</a>
+            </li>
+        </ul>
+        <div class="card-footer p-5">
+            {% if item.photo %}
+            <img src="{{item.photo.url}}" alt="">
+            {%else%}
+            <img src="https://picsum.photos/id/870/200/300?grayscale&blur=2" alt="">
+            {% endif %}
+            {{item.created_at|date:"Y-N-d H:i"}}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
